@@ -1,12 +1,11 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:mvvm/data/app_exceptions.dart';
 import 'package:mvvm/data/network/BaseApiServices.dart';
 import 'package:http/http.dart' as http;
+import 'package:mvvm/data/response/response_handler.dart';
 
 class NetworkApiServices extends BaseApiServices {
-
   @override
   Future getGetApiResponse(String url) async {
     dynamic jsonResponse;
@@ -14,7 +13,7 @@ class NetworkApiServices extends BaseApiServices {
     try {
       final getResponse =
           await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10));
-      jsonResponse = returnResponse(getResponse);
+      jsonResponse = ResponseHandler.returnResponse(getResponse);
     } on SocketException {
       throw FetchDataException("No Internet Connection");
     }
@@ -24,32 +23,15 @@ class NetworkApiServices extends BaseApiServices {
   @override
   Future getPostApiResponse(String url, dynamic body) async {
     dynamic jsonResponse;
-
     try {
       final postResponse = await http
           .post(Uri.parse(url), body: body)
           .timeout(const Duration(seconds: 10));
 
-      jsonResponse = returnResponse(postResponse);
+      jsonResponse = ResponseHandler.returnResponse(postResponse);
     } on SocketException {
       throw FetchDataException("No Internet Connection");
     }
     return jsonResponse;
-  }
-
-  dynamic returnResponse(http.Response response) {
-    switch (response.statusCode) {
-      case 200:
-        dynamic responseJson = jsonDecode(response.body);
-        return responseJson;
-      case 400:
-        throw BadRequestException(response.body.toString());
-      case 500:
-      case 404:
-        throw UnAuthorizedException(response.body.toString());
-      default:
-        throw FetchDataException(
-            "Error Occurred during communicating with server With Status Code: ${response.statusCode}");
-    }
   }
 }

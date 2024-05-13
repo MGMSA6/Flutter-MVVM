@@ -22,7 +22,7 @@ class Utils {
             padding: EdgeInsets.all(15),
             message: message,
             duration: Duration(seconds: 3),
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.red,
             reverseAnimationCurve: Curves.easeInOut,
             positionOffset: 20,
             icon: Icon(

@@ -28,10 +28,14 @@ class RoundButton extends StatelessWidget {
           onTap: onPress,
           borderRadius: BorderRadius.circular(15),
           child: Center(
-            child: Text(
-              AppStrings.login,
-              style: TextStyle(color: Colors.white),
-            ),
+            child: loading
+                ? CircularProgressIndicator(
+                    color: Colors.white,
+                  )
+                : Text(
+                    AppStrings.login,
+                    style: TextStyle(color: Colors.white),
+                  ),
           ),
         ),
       ),
