@@ -33,7 +33,7 @@ class RoundButton extends StatelessWidget {
                     color: Colors.white,
                   )
                 : Text(
-                    AppStrings.login,
+                    title,
                     style: TextStyle(color: Colors.white),
                   ),
           ),

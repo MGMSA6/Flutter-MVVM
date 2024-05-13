@@ -11,6 +11,15 @@ class AuthViewModel with ChangeNotifier {
 
   bool get loading => _loading;
 
+  bool _signUpLoading = false;
+
+  bool get signUpLoading => _signUpLoading;
+
+  setSignUpLoading(bool value) {
+    _signUpLoading = value;
+    notifyListeners();
+  }
+
   setLoading(bool value) {
     _loading = value;
     notifyListeners();
@@ -20,32 +29,33 @@ class AuthViewModel with ChangeNotifier {
     setLoading(true);
     _authRepo.loginApi(data).then((value) {
       setLoading(false);
+      Utils.showSnackBar("$value", context);
       if (kDebugMode) {
         print("Login Response: $value");
-        Utils.showSnackBar("$value", context);
         Navigator.pushNamed(context, RouteNames.home);
       }
     }).onError((error, stackTrace) {
       setLoading(false);
+      Utils.flushBarErrorMessage("$error", context);
       if (kDebugMode) {
-        Utils.flushBarErrorMessage("$error", context);
         print("$error");
       }
     });
   }
 
   Future<void> registerApi(dynamic data, BuildContext context) async {
-    setLoading(true);
+    setSignUpLoading(true);
     _authRepo.registerApi(data).then((value) {
-      setLoading(false);
+      setSignUpLoading(false);
+      Utils.showSnackBar("$value", context);
       if (kDebugMode) {
+        Navigator.pushNamed(context, RouteNames.login);
         print("Register Response: $value");
-        Utils.showSnackBar("$value", context);
       }
     }).onError((error, stackTrace) {
-      setLoading(false);
+      setSignUpLoading(false);
+      Utils.flushBarErrorMessage("$error", context);
       if (kDebugMode) {
-        Utils.flushBarErrorMessage("$error", context);
         print("$error");
       }
     });

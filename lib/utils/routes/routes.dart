@@ -3,6 +3,8 @@ import 'package:mvvm/utils/routes/route_names.dart';
 import 'package:mvvm/view/home_screen.dart';
 import 'package:mvvm/view/login_view.dart';
 
+import '../../view/signup_view.dart';
+
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -12,6 +14,9 @@ class Routes {
       case RouteNames.login:
         return MaterialPageRoute(
             builder: (BuildContext context) => LoginView());
+      case RouteNames.signUp:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => SignUpView());
       default:
         return MaterialPageRoute(builder: (_) {
           return Scaffold(
