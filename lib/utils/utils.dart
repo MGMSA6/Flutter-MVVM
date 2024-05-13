@@ -1,5 +1,6 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:another_flushbar/flushbar_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -40,5 +41,11 @@ class Utils {
           style: const TextStyle(color: Colors.white, fontSize: 15),
         ),
         backgroundColor: Colors.black));
+  }
+
+  static void fieldFocusNode(
+      BuildContext context, FocusNode current, FocusNode next) {
+    current.unfocus();
+    FocusScope.of(context).requestFocus(next);
   }
 }
