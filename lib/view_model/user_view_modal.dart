@@ -7,7 +7,7 @@ class UserViewModal with ChangeNotifier {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     sharedPreferences.setString("token", user.token.toString());
-      notifyListeners();
+    notifyListeners();
     return true;
   }
 

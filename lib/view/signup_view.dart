@@ -46,7 +46,10 @@ class _SignUpViewState extends State<SignUpView> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.blue,
-          title: Text("SignUp"),
+          title: Text(
+            "SignUp",
+            style: TextStyle(color: Colors.white),
+          ),
           centerTitle: true,
         ),
         body: SafeArea(
