@@ -1,23 +1,17 @@
 import 'package:mvvm/data/response/Status.dart';
 
 class ApiResponse<T> {
-  late Status? status;
-  final T? data;
-  final String? message;
+  Status? status;
+  T? data;
+  String? message;
 
   ApiResponse(this.status, this.data, this.message);
 
-  factory ApiResponse.loading() {
-    return ApiResponse(Status.LOADING, null, null);
-  }
+  ApiResponse.loading() : status = Status.LOADING;
 
-  factory ApiResponse.completed(T data) {
-    return ApiResponse(Status.COMPLETED, data, null);
-  }
+  ApiResponse.completed(this.data) : status = Status.COMPLETED;
 
-  factory ApiResponse.error(String message) {
-    return ApiResponse(Status.ERROR, null, message);
-  }
+  ApiResponse.error(this.message) : status = Status.ERROR;
 
   @override
   String toString() {

@@ -3,6 +3,7 @@ import 'package:mvvm/utils/routes/routes.dart';
 
 import 'package:mvvm/utils/routes/route_names.dart';
 import 'package:mvvm/view_model/auth_view_model.dart';
+import 'package:mvvm/view_model/user_view_modal.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
+        ChangeNotifierProvider(create: (_) => UserViewModal())
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        initialRoute: RouteNames.login,
+        initialRoute: RouteNames.splash,
         onGenerateRoute: Routes.generateRoute,
       ),
     );

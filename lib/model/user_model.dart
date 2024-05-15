@@ -1,18 +1,15 @@
 class UserModel {
-  String? token;
-  String? userName;
+  late String token;
 
-  UserModel({this.token, this.userName});
+  UserModel({required this.token});
 
   UserModel.fromJson(Map<String, dynamic> json) {
-    token = json['token'];
-    userName = json['userName'];
+    token = json['token'] as String;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['token'] = token;
-    data['userName'] = userName;
     return data;
   }
 }

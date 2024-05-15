@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvvm/res/components/round_button.dart';
 import 'package:mvvm/res/strings.dart';
@@ -44,8 +43,14 @@ class _LoginViewState extends State<LoginView> {
     final height = MediaQuery.of(context).size.height * 1;
 
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text("Login"),
+          title: Text(
+            "Login",
+            style: TextStyle(color: Colors.white),
+          ),
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.blue,
           centerTitle: true,
         ),
         body: SafeArea(

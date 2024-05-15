@@ -43,7 +43,9 @@ class _SignUpViewState extends State<SignUpView> {
     final _authViewModel = Provider.of<AuthViewModel>(context);
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: Colors.blue,
           title: Text("SignUp"),
           centerTitle: true,
         ),
